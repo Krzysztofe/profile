@@ -35,7 +35,7 @@ const Main = () => {
         <h3>eye color: no data</h3>
     </>
 
-// const person === false, const Person contain API Values
+// Hook person === false, const Person contain API Values
 
     if (!personValuesChecked) {
         content =

@@ -10,7 +10,7 @@ const InputCheckbox: FC<Props> = ({value, handleChange}) => {
     return (
             <label>
                 <input type='checkbox'
-                       name = 'checkBox'
+                       name = 'checkbox'
                        checked={value}
                        onChange={handleChange}/>
                 <div></div>
