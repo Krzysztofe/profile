@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getPerson} from '../fetchOperations/fetchGet'
+import {getPerson} from '../library/fetchGET'
 
 
 const Main = () => {
