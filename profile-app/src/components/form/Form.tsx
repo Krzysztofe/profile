@@ -1,7 +1,8 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useState, useEffect} from 'react';
 import InputText from "./InputText";
 import InputCheckbox from "./InputCheckbox";
 import {formValidation} from "../library/formValidation";
+import {postUser} from "../library/fetchPOST";
 
 
 const Form = () => {
@@ -11,7 +12,10 @@ const Form = () => {
     const [errors, setErrors] = useState({
         email: "", phone: "", checkbox: ""
     })
-
+    const [loading, setLoading] = useState(false)
+    const [fetchErrors, setFetchErrors] = useState<null | string>(null)
+    const [postInfoPrint, setPostInfoPrint] = useState(false)
+    const [buttonClick, setButtonClick] = useState(true)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const value = e.target.type === "checkbox"
@@ -19,6 +23,7 @@ const Form = () => {
             e.target.checked
             :
             e.target.value
+
         setInputsValues(
             {
                 ...inputsValues,
@@ -26,20 +31,35 @@ const Form = () => {
             })
     }
 
+
+    useEffect(() => {
+        const timeId = setTimeout(() => {
+            setPostInfoPrint(false)
+        }, 4000)
+
+        return () => {
+            clearTimeout(timeId)
+        }
+    }, [buttonClick])
+
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         setErrors(formValidation(inputsValues))
 
-        if (formValidation(inputsValues).email !== ""||
-            formValidation(inputsValues).phone !== ""||
+        if (formValidation(inputsValues).email !== "" ||
+            formValidation(inputsValues).phone !== "" ||
             formValidation(inputsValues).checkbox !== "") {
             return
         }
 
+        postUser(inputsValues, setFetchErrors, setLoading)
         setInputsValues({
             login: '', password: '', email: '', phone: '', checkbox: false
         })
+        setPostInfoPrint(true)
+        setButtonClick(prevState => !prevState)
     }
 
     return (
@@ -65,7 +85,7 @@ const Form = () => {
             <p>{errors.email}</p>
 
             <InputText label="numer telefonu"
-                       type='text'
+                       type='number'
                        name='phone'
                        value={inputsValues.phone}
                        handleChange={handleChange}/>
@@ -75,6 +95,8 @@ const Form = () => {
                            handleChange={handleChange}/>
             <p>{errors.checkbox}</p>
 
+            {postInfoPrint ? <p>{fetchErrors}</p> : null}
+            {loading ? <p>wysyłka</p> : null}
             <button>zapisz</button>
 
         </form>
