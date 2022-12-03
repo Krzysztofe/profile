@@ -5,7 +5,7 @@ import Form from "./form/Form";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename = '/profile'>
         <Routes>
             <Route path= '/' element={<CardMainComponent/> }/>
             <Route path= '/form' element={<Form/> }/>
