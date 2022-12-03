@@ -10,8 +10,8 @@ interface InputsValues {
 
 export const postUser = (inputsValues: InputsValues,
                          setFetchErrors: React.Dispatch<React.SetStateAction<string | null>>,
-                         setLoading: React.Dispatch<React.SetStateAction<boolean>>
-): void => {
+                         setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+                         ): void => {
 
 
     const URL_POST = 'https://swapi.dev/api/people/1/'
@@ -22,7 +22,7 @@ export const postUser = (inputsValues: InputsValues,
     fetch(URL_POST,
         {
             method: 'POST',
-            body: JSON.stringify(inputsValues),
+            body: JSON.stringify({inputsValues}),
             headers: {
                 "Content-Type": "application/json"
             }

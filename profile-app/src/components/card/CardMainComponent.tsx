@@ -4,10 +4,10 @@ import Main from "./Main";
 
 const CardMainComponent = () => {
     return (
-        <div>
+        <>
             <Header/>
             <Main/>
-        </div>
+        </>
     );
 };
 

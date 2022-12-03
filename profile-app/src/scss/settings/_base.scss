@@ -1,0 +1,15 @@
+body{
+  height: 120rem;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: clamp(280px, 100%, 1130px);
+}
+
+button, input {
+  cursor: pointer;
+}
+
+
+

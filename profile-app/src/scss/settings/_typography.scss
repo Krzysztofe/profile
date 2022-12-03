@@ -1,0 +1,7 @@
+:root {
+  font-family: $font-family-primary;
+  font-weight: normal;
+}
+html{
+  font-size: clamp(10%, 0.9vw, 62.5%);
+}
