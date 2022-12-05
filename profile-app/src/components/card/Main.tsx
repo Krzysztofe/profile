@@ -4,15 +4,13 @@ import {FaCheckCircle} from 'react-icons/fa';
 import {RiUserStarFill} from 'react-icons/ri'
 import {GlobalContext} from "../contextAPI/globalContextProv";
 
+
 const Main = () => {
 
-    const [person, setPerson] = useState({name: '', age: '', eyeColor: ''}
-    )
-
+    const [person, setPerson] = useState({name: '', age: '', eyeColor: ''})
     const [counter, setCounter] = useState(1)
     const [getError, setGetError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
-
     const {starWarsData, setStarWarsData} = useContext(GlobalContext)
 
 
@@ -25,7 +23,6 @@ const Main = () => {
             setPerson, starWarsData, setStarWarsData)
     }, [counter])
 
-    const personValuesChecked = Object.values(person).every(item => item === '')
 
 
     let content = <>
@@ -38,8 +35,8 @@ const Main = () => {
         <h3 className='main__h3'>eye color: </h3>
     </>
 
-// Hook person === false means hook person contain API Values
-
+    const personValuesChecked = Object.values(person).every(item => item === '')
+// Hook person === false, means hook person contain API Values
     if (!personValuesChecked) {
         content =
             <>
@@ -65,7 +62,7 @@ const Main = () => {
         </>
     }
 
-    if (loading && !getError) {
+    if (loading) {
         content = <>
             <div className="main_nameContainer">
                 <h2 className='main__h2'>Loading...</h2>

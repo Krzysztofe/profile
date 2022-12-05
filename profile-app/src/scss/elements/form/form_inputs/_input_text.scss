@@ -25,7 +25,8 @@
 .inputError{
   height: 2rem;
   color: rgb(255,0,0);
-  font-size: 1rem + 1rem;
+  font-size: 1rem + 2rem;
+  margin-bottom: 2rem;
   &:first-letter{
     text-transform: uppercase;
   }
@@ -34,7 +35,7 @@
 .inputError--underButton{
   margin-top: 2rem;
   margin-left: 26.5rem;
-  font-size: 2rem + 1rem;
+  font-size: 2rem + 2rem;
 }
 
 
@@ -53,6 +54,7 @@
 
   .inputError {
    font-size: 1rem;
+    margin-bottom: 0;
   }
   .inputError--underButton{
     font-size: 2rem;

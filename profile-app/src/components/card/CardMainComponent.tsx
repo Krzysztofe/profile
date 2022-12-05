@@ -4,10 +4,10 @@ import Main from "./Main";
 
 const CardMainComponent = () => {
     return (
-        <>
+        <div style={{minHeight: '120rem'}}>
             <Header/>
             <Main/>
-        </>
+        </div>
     );
 };
 

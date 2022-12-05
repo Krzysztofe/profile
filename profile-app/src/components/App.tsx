@@ -1,8 +1,9 @@
 import React from 'react';
 import CardMainComponent from "./card/CardMainComponent";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Form from "./form/Form";
+
 import GlobalContextProv from "./contextAPI/globalContextProv";
+import FormMainComponent from "./form/FormMainComponent";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <GlobalContextProv>
         <Routes>
                 <Route path= '/' element={<CardMainComponent/>}/>
-                <Route path= '/form' element={<Form/>}/>
+                <Route path= '/form' element={<FormMainComponent/>}/>
         </Routes>
       </GlobalContextProv>
     </BrowserRouter>

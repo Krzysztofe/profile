@@ -20,7 +20,7 @@
 }
 
 .inputCheckbox__text{
-  font-size: 2rem;
+  font-size: 2rem + 2rem;
   font-weight: $font-weight-semiBold;
   line-height: 3.3rem;
   margin-top: 2.48rem;
@@ -30,5 +30,8 @@
 @include media{
   .inputCheckbox__style {
     margin-bottom: 0;
+  }
+  .inputCheckbox__text{
+    font-size: 2rem;
   }
 }

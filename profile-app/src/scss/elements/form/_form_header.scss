@@ -1,18 +1,18 @@
 .wrapper--formHeader{
   text-align: right;
-  padding: 10.01rem - 7rem 17.4rem - 7rem 4rem 20.03rem - 7rem;
+  padding: 10.01rem 17.4rem - 7rem 4rem 20.03rem - 7rem;
 }
 
 .formHeader__h2{
   text-transform: uppercase;
-  font-size: 2rem + 1rem;
+  font-size: 2rem + 2rem;
   font-weight: bold;
   line-height: 3.3rem;
   position: relative;
   &::after{
     position: absolute;
     right: 0;
-    bottom: -1.2rem;
+    bottom: -1.2rem - 1rem ;
     content: "";
     display: block;
     width: 16.6rem;
@@ -28,5 +28,8 @@
 
   .formHeader__h2{
     font-size: 2rem;
+    &::after{
+      bottom: -1.2rem;
+    }
   }
 }

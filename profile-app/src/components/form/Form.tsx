@@ -21,7 +21,7 @@ const Form = () => {
 
     const {starWarsData} = useContext(GlobalContext)
 
-    console.log( "star", starWarsData)
+    console.log("star", starWarsData)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const value = e.target.type === "checkbox"
@@ -69,52 +69,46 @@ const Form = () => {
     }
 
     return (
-        <>
-        <header>
-            <div className="wrapper wrapper--formHeader">
-                <h2 className="formHeader__h2">formularz rejestracyjny</h2>
-            </div>
-        </header>
 
-        <form onSubmit={handleSubmit}
-        className="wrapper wrapper--form">
+            <form onSubmit={handleSubmit}
+                  className="wrapper wrapper--form">
 
-            <InputText label="login"
-                       type='text'
-                       name='login'
-                       value={inputsValues.login}
-                       handleChange={handleChange}/>
-
-            <InputText label="hasło"
-                       type='password'
-                       name='password'
-                       value={inputsValues.password}
-                       handleChange={handleChange}/>
-
-            <InputText label="e-mail"
-                       type='email'
-                       name='email'
-                       value={inputsValues.email}
-                       handleChange={handleChange}/>
-            <p className='inputError'>{errors.email}</p>
-
-            <InputText label="numer telefonu"
-                       type='number'
-                       name='phone'
-                       value={inputsValues.phone}
-                       handleChange={handleChange}/>
-            <p className='inputError'>{errors.phone}</p>
-
-            <InputCheckbox value={inputsValues.checkbox}
+                <InputText label="login"
+                           type='text'
+                           name='login'
+                           value={inputsValues.login}
                            handleChange={handleChange}/>
-            { errors ? <p className='inputError'>{errors.checkbox}</p> : null}
+                <p className='inputError'></p>
 
-            <button className='button'>zapisz</button>
-            {loading ? <p className='inputError inputError--underButton'>wysyłka</p> : null}
-            {postInfoPrint ? <p className='inputError inputError--underButton'>{fetchErrors}</p> :  null}
-        </form>
+                <InputText label="hasło"
+                           type='password'
+                           name='password'
+                           value={inputsValues.password}
+                           handleChange={handleChange}/>
+                <p className='inputError'></p>
 
-</>
+                <InputText label="e-mail"
+                           type='email'
+                           name='email'
+                           value={inputsValues.email}
+                           handleChange={handleChange}/>
+                <p className='inputError'>{errors.email}</p>
+
+                <InputText label="numer telefonu"
+                           type='number'
+                           name='phone'
+                           value={inputsValues.phone}
+                           handleChange={handleChange}/>
+                <p className='inputError'>{errors.phone}</p>
+
+                <InputCheckbox value={inputsValues.checkbox}
+                               handleChange={handleChange}/>
+                {errors ? <p className='inputError'>{errors.checkbox}</p> : null}
+
+                <button className='button'>zapisz</button>
+                {loading ? <p className='inputError inputError--underButton'>wysyłka</p> : null}
+                {postInfoPrint ? <p className='inputError inputError--underButton'>{fetchErrors}</p> : null}
+            </form>
     );
 };
 

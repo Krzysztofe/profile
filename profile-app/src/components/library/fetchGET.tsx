@@ -23,7 +23,8 @@ export const GETPerson =
     ): void => {
 
         const URL_first = `https://swapi.dev/api/people/${counter}/`
-        const URL_second = `https://swapi.py4e.com/api/people/${counter}/`
+        const URL_second = `https://swapi.py4e.com/api/peopl/${counter}/`
+
         setLoading(true)
         setGetError(null)
 
@@ -49,9 +50,14 @@ export const GETPerson =
                     setLoading(false)
                 }
             )
-            .catch(err => setGetError(err.message === 'Failed to fetch' ?
-                'Brak połączenia z serwerem' :
-                err.message)
+            .catch(err => {
+                    setGetError(err.message === 'Failed to fetch'
+                        ?
+                        'Brak połączenia z serwerem'
+                        :
+                        err.message)
+                    setLoading(false)
+                }
             )
     }
 
