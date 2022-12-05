@@ -8,13 +8,14 @@ interface Props {
 const InputCheckbox: FC<Props> = ({value, handleChange}) => {
 
     return (
-            <label>
+            <label className='inputCheckbox__label'>
                 <input type='checkbox'
                        name = 'checkbox'
                        checked={value}
-                       onChange={handleChange}/>
-                <div></div>
-                <p>akceptuje regulamin</p>
+                       onChange={handleChange}
+                className='inputCheckbox'/>
+                <div className='inputCheckbox__style'></div>
+                <p  className='inputCheckbox__text'>akceptuje regulamin</p>
             </label>
     );
 };

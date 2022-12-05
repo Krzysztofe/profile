@@ -1,6 +1,6 @@
 import React, {ChangeEvent, FormEvent, useContext, useState, useEffect} from 'react';
-import InputText from "./InputText";
-import InputCheckbox from "./InputCheckbox";
+import InputText from "./formInputs/InputText";
+import InputCheckbox from "./formInputs/InputCheckbox";
 import {formValidation} from "../library/formValidation";
 import {POSTUser} from "../library/fetchPOST";
 import {GlobalContext} from "../contextAPI/globalContextProv";
@@ -69,7 +69,15 @@ const Form = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
+        <header>
+            <div className="wrapper wrapper--formHeader">
+                <h2 className="formHeader__h2">formularz rejestracyjny</h2>
+            </div>
+        </header>
+
+        <form onSubmit={handleSubmit}
+        className="wrapper wrapper--form">
 
             <InputText label="login"
                        type='text'
@@ -83,29 +91,30 @@ const Form = () => {
                        value={inputsValues.password}
                        handleChange={handleChange}/>
 
-            <InputText label="email"
+            <InputText label="e-mail"
                        type='email'
                        name='email'
                        value={inputsValues.email}
                        handleChange={handleChange}/>
-            <p>{errors.email}</p>
+            <p className='inputError'>{errors.email}</p>
 
             <InputText label="numer telefonu"
                        type='number'
                        name='phone'
                        value={inputsValues.phone}
                        handleChange={handleChange}/>
-            <p>{errors.phone}</p>
+            <p className='inputError'>{errors.phone}</p>
 
             <InputCheckbox value={inputsValues.checkbox}
                            handleChange={handleChange}/>
-            <p>{errors.checkbox}</p>
+            { errors ? <p className='inputError'>{errors.checkbox}</p> : null}
 
-            {postInfoPrint ? <p>{fetchErrors}</p> : null}
-            {loading ? <p>wysyłka</p> : null}
-            <button>zapisz</button>
-
+            <button className='button'>zapisz</button>
+            {loading ? <p className='inputError inputError--underButton'>wysyłka</p> : null}
+            {postInfoPrint ? <p className='inputError inputError--underButton'>{fetchErrors}</p> :  null}
         </form>
+
+</>
     );
 };
 

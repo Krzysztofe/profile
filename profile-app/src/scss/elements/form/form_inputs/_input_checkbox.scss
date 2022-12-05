@@ -1,0 +1,34 @@
+.inputCheckbox__label{
+  display: flex;
+}
+
+.inputCheckbox{
+  display: none;
+}
+
+.inputCheckbox__style{
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid $color-black;
+  margin-top: 2.48rem;
+  margin-right: 2.01rem;
+  margin-bottom: 3rem;
+}
+
+.inputCheckbox:checked + .inputCheckbox__style{
+  background-color: $color-form-primary;
+}
+
+.inputCheckbox__text{
+  font-size: 2rem;
+  font-weight: $font-weight-semiBold;
+  line-height: 3.3rem;
+  margin-top: 2.48rem;
+  text-transform: capitalize;
+}
+
+@include media{
+  .inputCheckbox__style {
+    margin-bottom: 0;
+  }
+}

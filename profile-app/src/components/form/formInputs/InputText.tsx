@@ -17,11 +17,13 @@ const InputText: FC<Props> = ({
                               }) => {
     return (
         <div>
-            <label> {label}</label>
+            <label className='inputText__label'>
+                {label}:</label>
             <input type={type}
                    value={value}
                    name={name}
-                   onChange={handleChange}/>
+                   onChange={handleChange}
+                   className='inputText'/>
         </div>
     );
 };

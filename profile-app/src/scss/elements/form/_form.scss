@@ -1,0 +1,37 @@
+.wrapper--form {
+  padding: 10.01rem 17.4rem - 7rem 4rem 20.03rem - 7rem;
+  min-height: 120rem;
+}
+
+.button {
+  display: block;
+  width: 22.4rem + 10rem;
+  height: 5.48rem + 5rem;
+  border-radius: 2rem;
+  margin: 2.5rem auto;
+  background-color: $color-form-primary;
+  font-family: $font-family-button;
+  font-style: italic;
+  font-size: 3rem + 2rem;
+  -webkit-text-stroke: 1px #D9D9D9;
+  color: $color-white;
+  line-height: 3rem;
+  text-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  box-shadow: 1rem 0.4rem 0.4rem rgba(0, 0, 0, 0.75);
+  border: none;
+}
+
+
+@include media {
+  .wrapper--form{
+    padding: 10.01rem 17.4rem 4rem 20.03rem;
+  }
+  .button{
+    width: 22.4rem;
+    height: 5.48rem;
+    font-size: 3rem;
+  }
+}
+
+
+

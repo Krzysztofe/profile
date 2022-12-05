@@ -1,0 +1,32 @@
+.wrapper--formHeader{
+  text-align: right;
+  padding: 10.01rem - 7rem 17.4rem - 7rem 4rem 20.03rem - 7rem;
+}
+
+.formHeader__h2{
+  text-transform: uppercase;
+  font-size: 2rem + 1rem;
+  font-weight: bold;
+  line-height: 3.3rem;
+  position: relative;
+  &::after{
+    position: absolute;
+    right: 0;
+    bottom: -1.2rem;
+    content: "";
+    display: block;
+    width: 16.6rem;
+    height: 0.92rem;
+    background-color: $color-form-primary;
+  }
+}
+
+@include media{
+  .wrapper--formHeader {
+    padding: 10.01rem 17.4rem 0 20.03rem;
+  }
+
+  .formHeader__h2{
+    font-size: 2rem;
+  }
+}
