@@ -7,13 +7,13 @@ interface TypesPerson {
 }
 
 interface TypesStarWars {
-    name: "",
-    created: "",
+    name: string,
+    created: string,
     vehicles: string []
 }
 
 
-export const getPerson =
+export const GETPerson =
     (counter: number,
      setLoading: React.Dispatch<React.SetStateAction<boolean>>,
      setGetError: React.Dispatch<React.SetStateAction<string | null>>,
@@ -34,7 +34,6 @@ export const getPerson =
                 }
                 throw Error('brak dostępu do zasobu')
             })
-
             .then(data => {
                     setPerson({
                         name: data.name,

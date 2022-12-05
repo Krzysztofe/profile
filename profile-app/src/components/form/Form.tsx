@@ -1,11 +1,13 @@
-import React, {ChangeEvent, FormEvent, useState, useEffect} from 'react';
+import React, {ChangeEvent, FormEvent, useContext, useState, useEffect} from 'react';
 import InputText from "./InputText";
 import InputCheckbox from "./InputCheckbox";
 import {formValidation} from "../library/formValidation";
-import {postUser} from "../library/fetchPOST";
+import {POSTUser} from "../library/fetchPOST";
+import {GlobalContext} from "../contextAPI/globalContextProv";
 
 
 const Form = () => {
+
     const [inputsValues, setInputsValues] = useState({
         login: '', password: '', email: '', phone: '', checkbox: false
     })
@@ -16,6 +18,10 @@ const Form = () => {
     const [fetchErrors, setFetchErrors] = useState<null | string>(null)
     const [postInfoPrint, setPostInfoPrint] = useState(false)
     const [buttonClick, setButtonClick] = useState(true)
+
+    const {starWarsData} = useContext(GlobalContext)
+
+    console.log( "star", starWarsData)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const value = e.target.type === "checkbox"
@@ -54,7 +60,7 @@ const Form = () => {
             return
         }
 
-        postUser(inputsValues, setFetchErrors, setLoading)
+        POSTUser(inputsValues, setFetchErrors, setLoading, starWarsData)
         setInputsValues({
             login: '', password: '', email: '', phone: '', checkbox: false
         })

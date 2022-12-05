@@ -1,21 +1,31 @@
 
 .main__container {
   box-shadow: 0.8rem 0.1rem 0.4rem 0.1rem rgba(0,0,0,0.75);
-  margin-top: 7.6rem;
-  margin-left: 15.01rem;
-  width: 80rem;
+  //margin-top: 7.6rem;
+  //margin-left: 16.01rem;
+  margin: 7.6rem auto auto auto;
+  width: 90%;
   height: 73.98rem;
   background-color: $color-image-background;
   border-radius: 50rem 6rem 30rem 10rem;
+  padding-top: 14rem;
+  @media (min-width:800px) {
+    margin-left: 16.01rem;
+    width: 79.8rem;
+  }
 }
 
 .main__image{
   border-radius: 20rem 2rem 10rem 5rem;
-  width: 53.4rem;
+  width: 70%;
   height: 38.3rem;
-  margin-top: 14rem;
-  margin-left: 14.4rem;
+  display: block;
+  margin: 0 auto;
   object-fit: cover;
+  @media (min-width:800px) {
+    margin-left: 14.4rem;
+    width: 53.4rem;
+  }
 }
 
 .main_nameContainer{
@@ -32,7 +42,7 @@
 
 .userIcon{
   color: $color-white;
-  margin-right: 1.4rem;
+  margin-right: 1.6rem;
 }
 .checkedIcon{
   color: rgba(25, 148, 14, 1);
@@ -42,8 +52,8 @@
   width: 33.3rem;
   text-align: center;
   font-weight: $font-weight-bold;
-  line-height: 6.1rem;
   font-size: 4rem;
+  margin-bottom: 1rem;
 }
 
 .main__h3{
@@ -51,17 +61,17 @@
   font-size: 2rem;
   font-weight: $font-weight-slim;
   font-style: italic;
-  line-height: 2.4rem;
+  line-height: 2.42rem;
 }
 
 .main__button{
   display: block;
-  margin-left: 43.2rem;
+  margin-left: 43.1rem;
   margin-top: 2.86rem;
   font-family: $font-family-button;
   font-style: italic;
   background-color: #35660E;
-  width: 22.43rem;
+  width: 22.9rem;
   height: 5.48rem;
   font-size: 3rem;
   -webkit-text-stroke: 1px  #D9D9D9;

@@ -1,4 +1,5 @@
 import React from "react";
+import {StarWarsData} from "../contextAPI/globalContextProv";
 
 interface InputsValues {
     login: string,
@@ -8,9 +9,10 @@ interface InputsValues {
     checkbox: boolean
 }
 
-export const postUser = (inputsValues: InputsValues,
+export const POSTUser = (inputsValues: InputsValues,
                          setFetchErrors: React.Dispatch<React.SetStateAction<string | null>>,
                          setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+                         starWarsData: [] | StarWarsData[]
                          ): void => {
 
 
@@ -22,7 +24,7 @@ export const postUser = (inputsValues: InputsValues,
     fetch(URL_POST,
         {
             method: 'POST',
-            body: JSON.stringify({inputsValues}),
+            body: JSON.stringify({...inputsValues, starWarsData}),
             headers: {
                 "Content-Type": "application/json"
             }
