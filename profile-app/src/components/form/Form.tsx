@@ -4,6 +4,7 @@ import InputCheckbox from "./formInputs/InputCheckbox";
 import {formValidation} from "../library/formValidation";
 import {POSTUser} from "../library/fetchPOST";
 import {GlobalContext} from "../contextAPI/globalContextProv";
+import Button from "../Button";
 
 
 const Form = () => {
@@ -20,8 +21,6 @@ const Form = () => {
     const [buttonClick, setButtonClick] = useState(true)
 
     const {starWarsData} = useContext(GlobalContext)
-
-    console.log("star", starWarsData)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const value = e.target.type === "checkbox"
@@ -105,7 +104,9 @@ const Form = () => {
                                handleChange={handleChange}/>
                 {errors ? <p className='inputError'>{errors.checkbox}</p> : null}
 
-                <button className='button'>zapisz</button>
+                <Button className='button'
+                        text='zapisz'/>
+
                 {loading ? <p className='inputError inputError--underButton'>wysyłka</p> : null}
                 {postInfoPrint ? <p className='inputError inputError--underButton'>{fetchErrors}</p> : null}
             </form>

@@ -23,17 +23,17 @@ export const GETPerson =
     ): void => {
 
         const URL_first = `https://swapi.dev/api/people/${counter}/`
-        const URL_second = `https://swapi.py4e.com/api/peopl/${counter}/`
+        const URL_second = `https://swapi.py4e.com/api/people/${counter}/`
 
         setLoading(true)
         setGetError(null)
 
         fetch(URL_second)
             .then(resp => {
-                if (resp.ok) {
-                    return resp.json()
+                if (!resp.ok) {
+                    throw Error('brak dostępu do zasobu')
                 }
-                throw Error('brak dostępu do zasobu')
+                return resp.json()
             })
             .then(data => {
                     setPerson({

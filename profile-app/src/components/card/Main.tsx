@@ -3,6 +3,7 @@ import {GETPerson} from '../library/fetchGET'
 import {FaCheckCircle} from 'react-icons/fa';
 import {RiUserStarFill} from 'react-icons/ri'
 import {GlobalContext} from "../contextAPI/globalContextProv";
+import Button from "../Button";
 
 
 const Main = () => {
@@ -22,7 +23,6 @@ const Main = () => {
         GETPerson(counter, setLoading, setGetError,
             setPerson, starWarsData, setStarWarsData)
     }, [counter])
-
 
 
     let content = <>
@@ -79,15 +79,16 @@ const Main = () => {
         <main>
             <div className="wrapper">
                 <div className="main__container">
-                   <img className="main__image"
+                    <img className="main__image"
                          src='https://i.picsum.photos/id/104/534/383.jpg?hmac=LWCf2xo0z9EpP42nzR8xtJAr5TImrulfd1BaY-jvdl0'
                          alt="person image"/>
                     {content}
                 </div>
-                <button className='main__button'
-                        onClick={handleIncrease}>
-                    next profiles
-                </button>
+
+                <Button className='main__button'
+                        text='next profiles'
+                        onClick={handleIncrease}/>
+
             </div>
         </main>
     );

@@ -30,10 +30,11 @@ export const POSTUser = (inputsValues: InputsValues,
             }
         })
         .then(resp => {
-            if (resp.ok) {
-                return resp.json()
+            if (!resp.ok) {
+                throw Error('Nie znaleziono metody zapisu')
             }
-            throw Error('Nie znaleziono metody zapisu')
+
+            return resp.json()
         })
         .then(data => {
             if (data) {
