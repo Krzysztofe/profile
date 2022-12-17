@@ -1,29 +1,19 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {GETPerson} from '../library/fetchGET'
+import React, {useState} from 'react';
+import useGETFetch from '../library/fetchGET'
 import {FaCheckCircle} from 'react-icons/fa';
 import {RiUserStarFill} from 'react-icons/ri'
-import {GlobalContext} from "../contextAPI/globalContextProv";
 import Button from "../Button";
 
 
 const Main = () => {
 
-    const [person, setPerson] = useState({name: '', age: '', eyeColor: ''})
     const [counter, setCounter] = useState(1)
-    const [getError, setGetError] = useState<string | null>(null)
-    const [loading, setLoading] = useState(false)
-    const {starWarsData, setStarWarsData} = useContext(GlobalContext)
-
 
     const handleIncrease = () => {
         setCounter(prevState => prevState + 1)
     }
 
-    useEffect(() => {
-        GETPerson(counter, setLoading, setGetError,
-            setPerson, starWarsData, setStarWarsData)
-    }, [counter])
-
+    const {loading, getError, dataObject: person } = useGETFetch (`https://swapi.py4e.com/api/people/${counter}/`)
 
     let content = <>
         <div className="main_nameContainer">
@@ -35,9 +25,8 @@ const Main = () => {
         <h3 className='main__h3'>eye color: </h3>
     </>
 
-    const personValuesChecked = Object.values(person).every(item => item === '')
-// Hook person === false, means hook person contain API Values
-    if (!personValuesChecked) {
+
+    if (person) {
         content =
             <>
                 <div className="main_nameContainer">

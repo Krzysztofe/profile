@@ -2,8 +2,7 @@ import React, {ChangeEvent, FormEvent, useContext, useState, useEffect} from 're
 import InputText from "./formInputs/InputText";
 import InputCheckbox from "./formInputs/InputCheckbox";
 import {formValidation} from "../library/formValidation";
-import {POSTUser} from "../library/fetchPOST";
-import {GlobalContext} from "../contextAPI/globalContextProv";
+import usePOSTFetch from "../library/fetchPOST";
 import Button from "../Button";
 
 
@@ -15,12 +14,12 @@ const Form = () => {
     const [errors, setErrors] = useState({
         email: "", phone: "", checkbox: ""
     })
-    const [loading, setLoading] = useState(false)
-    const [fetchErrors, setFetchErrors] = useState<null | string>(null)
     const [postInfoPrint, setPostInfoPrint] = useState(false)
     const [buttonClick, setButtonClick] = useState(true)
 
-    const {starWarsData} = useContext(GlobalContext)
+
+    const {fetchErrors, loading, createPOST} =
+        usePOSTFetch('https://swapi.dev/api/people/1/', inputsValues)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const value = e.target.type === "checkbox"
@@ -58,8 +57,7 @@ const Form = () => {
             formValidation(inputsValues).checkbox !== "") {
             return
         }
-
-        POSTUser(inputsValues, setFetchErrors, setLoading, starWarsData)
+        createPOST()
         setInputsValues({
             login: '', password: '', email: '', phone: '', checkbox: false
         })
@@ -71,7 +69,6 @@ const Form = () => {
 
             <form onSubmit={handleSubmit}
                   className="wrapper wrapper--form">
-
                 <InputText label="login"
                            type='text'
                            name='login'

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {GlobalContext} from "../contextAPI/globalContextProv";
 
 interface TypesPerson {
     name: string,
@@ -13,22 +14,17 @@ interface TypesStarWars {
 }
 
 
-export const GETPerson =
-    (counter: number,
-     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-     setGetError: React.Dispatch<React.SetStateAction<string | null>>,
-     setPerson: React.Dispatch<React.SetStateAction<TypesPerson>>,
-     star_wars_data: TypesStarWars[] | [],
-     setStarWarsData: React.Dispatch<React.SetStateAction<TypesStarWars[] | []>>
-    ): void => {
+export const useGETFetch = (url: string) => {
+    const [loading, setLoading] = useState(true)
+    const [getError, setGetError] = useState<string | null>(null)
+    const [dataObject, setDataObject] = useState<any>(null)
+    const {starWarsData, setStarWarsData} = useContext(GlobalContext)
 
-        const URL_first = `https://swapi.dev/api/people/${counter}/`
-        const URL_second = `https://swapi.py4e.com/api/people/${counter}/`
-
+    useEffect(() => {
         setLoading(true)
         setGetError(null)
 
-        fetch(URL_second)
+        fetch(url)
             .then(resp => {
                 if (!resp.ok) {
                     throw Error('brak dostępu do zasobu')
@@ -36,12 +32,12 @@ export const GETPerson =
                 return resp.json()
             })
             .then(data => {
-                    setPerson({
+                setDataObject({
                         name: data.name,
                         age: data.birth_year,
                         eyeColor: data.eye_color
                     })
-                    setStarWarsData([...star_wars_data,
+                    setStarWarsData([...starWarsData,
                         {
                             name: data.name,
                             created: data.created,
@@ -59,8 +55,13 @@ export const GETPerson =
                     setLoading(false)
                 }
             )
-    }
 
+    }, [url])
+
+    return {loading, getError, dataObject}
+}
+
+export default useGETFetch
 
 
 

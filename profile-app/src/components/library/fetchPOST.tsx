@@ -1,7 +1,7 @@
-import React from "react";
-import {StarWarsData} from "../contextAPI/globalContextProv";
+import React, {useContext, useEffect, useState} from "react";
+import {GlobalContext, StarWarsData} from "../contextAPI/globalContextProv";
 
-interface InputsValues {
+interface Data {
     login: string,
     password: string,
     email: string,
@@ -9,45 +9,50 @@ interface InputsValues {
     checkbox: boolean
 }
 
-export const POSTUser = (inputsValues: InputsValues,
-                         setFetchErrors: React.Dispatch<React.SetStateAction<string | null>>,
-                         setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-                         starWarsData: [] | StarWarsData[]
-                         ): void => {
+
+const usePOSTFetch = (URL_POST: string, data: Data) => {
+
+    const [fetchErrors, setFetchErrors] = useState<string | null>(null)
+    const [loading, setLoading] = useState(false)
+    const {starWarsData} = useContext(GlobalContext)
 
 
-    const URL_POST = 'https://swapi.dev/api/people/1/'
+    const createPOST = () => {
 
-    setFetchErrors(null)
-    setLoading(true)
+        setLoading(true)
+        setFetchErrors(null)
 
-    fetch(URL_POST,
-        {
-            method: 'POST',
-            body: JSON.stringify({...inputsValues, starWarsData}),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(resp => {
-            if (!resp.ok) {
-                throw Error('Nie znaleziono metody zapisu')
-            }
+        fetch(URL_POST,
+            {
+                method: 'POST',
+                body: JSON.stringify({...data, starWarsData}),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(resp => {
+                if (!resp.ok) {
+                    throw Error('Nie znaleziono metody zapisu')
+                }
+                return resp.json()
+            })
+            .then(data => {
+                if (data) {
+                    setFetchErrors('Informacje zostały wysłane')
+                    setLoading(false)
+                }
+            })
+            .catch(err => {
+                    setFetchErrors(err.message === 'Failed to fetch' ?
+                        'Brak połączenia z serwerem' :
+                        err.message)
+                    setLoading(false)
+                }
+            )
+    }
 
-            return resp.json()
-        })
-        .then(data => {
-            if (data) {
-                setFetchErrors('Informacje zostały wysłane')
-                setLoading(false)
-            }
-        })
-        .catch(err => {
-                setFetchErrors(err.message === 'Failed to fetch' ?
-                    'Brak połączenia z serwerem' :
-                    err.message)
-                setLoading(false)
-            }
-        )
+    return {fetchErrors, loading, createPOST}
 }
 
+
+export default usePOSTFetch
